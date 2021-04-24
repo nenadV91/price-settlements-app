@@ -1,0 +1,110 @@
+[
+  {
+    "id": "x792xQ8uspSRPPgEmFATnB",
+    "tokens": {
+      "EUR": { "label": "EUR" },
+      "RED": { "label": "Red wine" }
+    },
+    "prices": {
+      "EUR": "1.0",
+      "RED": "9.5"
+    },
+    "orders": {
+      "01": {
+        "sell_token": "EUR",
+        "buy_token": "RED",
+        "sell_amount": "50.0",
+        "buy_amount": "10.0",
+        "is_sell_order": false,
+        "allow_partial_fill": false,
+        "exec_sell_amount": "47.5",
+        "exec_buy_amount": "5"
+      },
+      "02": {
+        "sell_token": "RED",
+        "buy_token": "EUR",
+        "sell_amount": "100",
+        "buy_amount": "900",
+        "is_sell_order": true,
+        "allow_partial_fill": true,
+        "exec_sell_amount": "5",
+        "exec_buy_amount": "47.5"
+      }
+    }
+  },
+  {
+    "id": "vFWqhywsvccmb7oAqmrnxH",
+    "tokens": {
+      "EUR": { "label": "EUR" },
+      "OIL": { "label": "Oil" },
+      "RED": { "label": "Red wine" }
+    },
+    "prices": {
+      "EUR": "1.0",
+      "OIL": "13.0",
+      "RED": "14.0"
+    },
+    "orders": {
+      "01": {
+        "sell_token": "RED",
+        "buy_token": "OIL",
+        "sell_amount": "12.0",
+        "buy_amount": "12.0",
+        "is_sell_order": true,
+        "allow_partial_fill": false,
+        "exec_sell_amount": "12.0",
+        "exec_buy_amount": "12.923"
+      },
+      "02": {
+        "sell_token": "OIL",
+        "buy_token": "RED",
+        "sell_amount": "2.0",
+        "buy_amount": "2.2",
+        "is_sell_order": true,
+        "allow_partial_fill": false,
+        "exec_sell_amount": "0.0",
+        "exec_buy_amount": "0.0"
+      },
+      "03": {
+        "sell_token": "RED",
+        "buy_token": "EUR",
+        "sell_amount": "10.0",
+        "buy_amount": "150.0",
+        "is_sell_order": true,
+        "allow_partial_fill": false,
+        "exec_sell_amount": "0.0",
+        "exec_buy_amount": "0.0"
+      },
+      "04": {
+        "sell_token": "OIL",
+        "buy_token": "EUR",
+        "sell_amount": "15.0",
+        "buy_amount": "180.0",
+        "is_sell_order": true,
+        "allow_partial_fill": false,
+        "exec_sell_amount": "15.0",
+        "exec_buy_amount": "195.0"
+      },
+      "05": {
+        "sell_token": "EUR",
+        "buy_token": "OIL",
+        "sell_amount": "52.0",
+        "buy_amount": "4.0",
+        "is_sell_order": false,
+        "allow_partial_fill": true,
+        "exec_sell_amount": "27.0",
+        "exec_buy_amount": "2.077"
+      },
+      "06": {
+        "sell_token": "EUR",
+        "buy_token": "RED",
+        "sell_amount": "280.0",
+        "buy_amount": "20.0",
+        "is_sell_order": false,
+        "allow_partial_fill": true,
+        "exec_sell_amount": "168.0",
+        "exec_buy_amount": "12.0"
+      }
+    }
+  }
+]
