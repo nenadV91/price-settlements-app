@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Loader from 'components/Loader';
@@ -19,12 +20,11 @@ const Settlement = (props: Props) => {
 
   const id = props.match?.params?.id;
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [nodes, setNodes] = useState<any>(null);
+  const [activeNode, setActiveNode] = useState<any>(null);
 
   const getSettlement = useCallback(async (): Promise<void> => {
-    setIsLoading(true);
-
     if (!id) {
       return;
     }
@@ -43,7 +43,13 @@ const Settlement = (props: Props) => {
     getSettlement();
   }, [getSettlement]);
 
-  console.log(nodes);
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!isLoading && !nodes) {
+    return <Redirect to='/not-found' />;
+  }
 
   return (
     <Grid container justify='center'>

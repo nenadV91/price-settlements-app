@@ -13,7 +13,16 @@ class MockApi {
     this.data = data;
   }
 
+  delay = (time: number) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true);
+      }, time);
+    });
+  };
+
   getSettlements = async () => {
+    await this.delay(1000);
     return this.data;
   };
 
@@ -29,6 +38,8 @@ class MockApi {
 
     addPrices(nodes, prices);
     addOrders(nodes, orders);
+
+    await this.delay(1000);
 
     return nodes;
   };

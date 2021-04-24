@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 const SettlementList: React.FC = () => {
   const classes = useStyles();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [rows, setRows] = useState<any>([]);
 
   const getSettlements = useCallback(async (): Promise<void> => {
@@ -65,7 +65,7 @@ const SettlementList: React.FC = () => {
                 {rows.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell component='th' scope='row'>
-                      <Link to={`/${row.id}`}>{row.id}</Link>
+                      <Link to={`/settlements/${row.id}`}>{row.id}</Link>
                     </TableCell>
                     <TableCell align='right'>
                       {Object.keys(row.tokens).length}
