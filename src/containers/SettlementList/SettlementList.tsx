@@ -32,53 +32,53 @@ const SettlementList: React.FC = () => {
       const data = await mockApi.getSettlements();
       setRows(data);
     } catch (err) {
-      console.log(`Error fetching settlements, ${err}`)
+      console.log(`Error fetching settlements, ${err}`);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    getSettlements()
-  }, [getSettlements])
+    getSettlements();
+  }, [getSettlements]);
 
   return (
-    <Grid container justify="center">
+    <Grid container justify='center'>
       <Grid item md={8}>
-        <Typography variant="h4" component="h4" gutterBottom>
+        <Typography variant='h4' component='h4' gutterBottom>
           Latest settlements
         </Typography>
 
         {isLoading && <Loader />}
 
-        {
-          !isLoading && rows ? (
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Settlement</TableCell>
-                    <TableCell align="right">Tokens</TableCell>
-                    <TableCell align="right">Orders</TableCell>
+        {!isLoading && rows ? (
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label='simple table'>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Settlement</TableCell>
+                  <TableCell align='right'>Tokens</TableCell>
+                  <TableCell align='right'>Total orders</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.id}>
+                    <TableCell component='th' scope='row'>
+                      <Link to={`/${row.id}`}>{row.id}</Link>
+                    </TableCell>
+                    <TableCell align='right'>
+                      {Object.keys(row.tokens).length}
+                    </TableCell>
+                    <TableCell align='right'>
+                      {Object.keys(row.orders).length}
+                    </TableCell>
                   </TableRow>
-                </TableHead>
-                <TableBody>
-                  {
-                    rows.map(row => (
-                      <TableRow key={row.id}>
-                        <TableCell component="th" scope="row">
-                          <Link to={`/${row.id}`}>{row.id}</Link>
-                        </TableCell>
-                        <TableCell align="right">{Object.keys(row.tokens).length}</TableCell>
-                        <TableCell align="right">{Object.keys(row.orders).length}</TableCell>
-                      </TableRow>
-                    ))
-                  }
-                </TableBody>
-              </Table>
-            </TableContainer>
-          ) : null
-        }
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : null}
       </Grid>
     </Grid>
   );
