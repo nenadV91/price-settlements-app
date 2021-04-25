@@ -59,6 +59,7 @@ const Settlement = (props: Props) => {
     try {
       const res = await mockApi.getSettlement(id);
       setNodes(res);
+      if (res) setActiveNode(res[0]);
     } catch (err) {
       console.log(`Error fetching settlement, ${err}`);
     } finally {
