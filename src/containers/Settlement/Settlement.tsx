@@ -9,6 +9,7 @@ import mockApi from 'mockApi';
 
 import NodeList from 'components/NodeList';
 import NodeOverview from 'components/NodeOverview';
+import NodesGraph from 'components/NodesGraph';
 
 type Props = {
   match?: {
@@ -34,13 +35,6 @@ const useStyles = makeStyles((theme) => {
     widget: {
       marginBottom: theme.spacing(4),
     },
-    activeNode: {
-      padding: theme.spacing(2),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
   };
 });
 
@@ -50,12 +44,12 @@ const Settlement = (props: Props) => {
   const id = props.match?.params?.id;
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [nodes, setNodes] = useState<any>(null);
   const [activeNode, setActiveNode] = useState<any>(null);
+  const [nodes, setNodes] = useState<any>(null);
 
-  const handleNodeClick = (node: any) => {
+  const selectNode = useCallback((node: any) => {
     setActiveNode(node);
-  };
+  }, []);
 
   const getSettlement = useCallback(async (): Promise<void> => {
     if (!id) {
@@ -107,14 +101,16 @@ const Settlement = (props: Props) => {
         </Typography>
       </Grid>
 
-      <Grid container>
+      <Grid spacing={2} container>
         <Grid item md={7}>
-          Graph
+          <div className={classes.widget}>
+            <NodesGraph handleNodeClick={selectNode} nodes={nodes} id={id} />
+          </div>
         </Grid>
 
         <Grid item md={5}>
           <div className={classes.widget}>
-            <NodeList handleNodeClick={handleNodeClick} nodes={nodes} />
+            <NodeList handleNodeClick={selectNode} nodes={nodes} />
           </div>
 
           <div className={classes.widget}>

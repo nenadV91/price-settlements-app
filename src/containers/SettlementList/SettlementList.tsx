@@ -12,10 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Loader from 'components/Loader';
 import mockApi from 'mockApi';
-import theme from 'theme';
 
 const useStyles = makeStyles((theme) => {
-  console.log(theme);
   return {
     table: {
       minWidth: 650,

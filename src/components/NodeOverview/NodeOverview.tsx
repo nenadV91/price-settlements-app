@@ -9,7 +9,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
-import cx from 'classnames';
 
 const useStyles = makeStyles((theme) => {
   return {

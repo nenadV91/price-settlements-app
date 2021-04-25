@@ -34,6 +34,7 @@ const NodeList = ({ nodes = [], handleNodeClick }) => {
         </ListItem>
 
         <Divider />
+
         <ListItem>
           <Table
             size='small'
