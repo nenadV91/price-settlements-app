@@ -1,7 +1,9 @@
+import Typography from '@material-ui/core/Typography';
+
 const Loader = () => {
   return (
     <div>
-      Loading...
+      <Typography>Loading...</Typography>
     </div>
   );
 };

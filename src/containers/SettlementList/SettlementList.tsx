@@ -12,11 +12,19 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Loader from 'components/Loader';
 import mockApi from 'mockApi';
+import theme from 'theme';
 
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
+const useStyles = makeStyles((theme) => {
+  console.log(theme);
+  return {
+    table: {
+      minWidth: 650,
+    },
+    link: {
+      color: theme.palette.primary.main,
+      textDecoration: 'none',
+    },
+  };
 });
 
 const SettlementList: React.FC = () => {
@@ -65,7 +73,12 @@ const SettlementList: React.FC = () => {
                 {rows.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell component='th' scope='row'>
-                      <Link to={`/settlements/${row.id}`}>{row.id}</Link>
+                      <Link
+                        className={classes.link}
+                        to={`/settlements/${row.id}`}
+                      >
+                        {row.id}
+                      </Link>
                     </TableCell>
                     <TableCell align='right'>
                       {Object.keys(row.tokens).length}

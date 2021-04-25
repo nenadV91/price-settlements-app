@@ -5,8 +5,15 @@ export default function getNodes(data: Token[]) {
     r[ticker] = {
       ticker,
       label,
-      sold: 0,
-      bought: 0,
+      exec: {
+        sell: 0,
+        buy: 0,
+      },
+      order: {
+        sell: 0,
+        buy: 0,
+      },
+      orders: [],
     };
 
     return r;

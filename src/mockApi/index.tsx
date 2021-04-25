@@ -41,7 +41,7 @@ class MockApi {
 
     await this.delay(1000);
 
-    return nodes;
+    return Object.values(nodes);
   };
 }
 

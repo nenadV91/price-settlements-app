@@ -1,13 +1,19 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import App from 'components/App';
+import theme from 'theme';
+
+import 'sanitize.css/sanitize.css';
+import './index.css';
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <MuiThemeProvider theme={theme}>
+    <Router>
+      <App />
+    </Router>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 
