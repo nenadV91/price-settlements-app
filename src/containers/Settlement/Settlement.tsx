@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => {
       marginBottom: theme.spacing(1),
     },
     widget: {
-      marginBottom: theme.spacing(4),
+      marginBottom: theme.spacing(2),
     },
   };
 });
@@ -119,13 +119,13 @@ const Settlement = (props: Props) => {
           <div className={classes.widget}>
             <NodesGraph handleNodeClick={selectNode} nodes={nodes} id={id} />
           </div>
-        </Grid>
 
-        <Grid item xs={12} sm={10} md={8} lg={5}>
           <div className={classes.widget}>
             <NodeList handleNodeClick={selectNode} nodes={nodes} />
           </div>
+        </Grid>
 
+        <Grid item xs={12} sm={10} md={8} lg={5}>
           <div className={classes.widget}>
             {activeNode ? <NodeOverview node={activeNode} /> : null}
           </div>
