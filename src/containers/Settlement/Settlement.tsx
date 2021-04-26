@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 import Loader from 'components/Loader';
 import mockApi from 'mockApi';
@@ -23,6 +24,10 @@ const useStyles = makeStyles((theme) => {
   return {
     title: {
       marginBottom: theme.spacing(3),
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
     },
     titleStrong: {
       marginLeft: theme.spacing(1),
@@ -88,18 +93,24 @@ const Settlement = (props: Props) => {
   return (
     <Grid spacing={2} container>
       <Grid className={classes.title}>
-        <Typography component='span' variant='h6'>
-          Settlement
-        </Typography>
+        <div>
+          <Typography component='span' variant='h6'>
+            Settlement
+          </Typography>
 
-        <Typography
-          className={classes.titleStrong}
-          variant='h4'
-          component='span'
-          color='primary'
-        >
-          {id}
-        </Typography>
+          <Typography
+            className={classes.titleStrong}
+            variant='h4'
+            component='span'
+            color='primary'
+          >
+            {id}
+          </Typography>
+        </div>
+
+        <Button color='primary' component={Link} to='/' size='small'>
+          Go back
+        </Button>
       </Grid>
 
       <Grid spacing={2} container>

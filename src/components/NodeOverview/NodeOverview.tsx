@@ -8,6 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => {
@@ -96,6 +97,43 @@ const NodeOverview = ({ node }) => {
                 <TableCell>{node.exec.buy}</TableCell>
                 <TableCell>{node.exec.sell}</TableCell>
               </TableRow>
+            </TableBody>
+          </Table>
+        </ListItem>
+
+        <Divider />
+
+        <ListItem>
+          <Table
+            className={classes.table}
+            aria-label='simple table'
+            size='small'
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>Tokens (sell/buy)</TableCell>
+                <TableCell>Type</TableCell>
+                <TableCell>Sell amount</TableCell>
+                <TableCell>Buy amount</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {node.orders.map((order) => (
+                <TableRow key={order.id}>
+                  <TableCell>
+                    {order.sell_token}/{order.buy_token}
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      size='small'
+                      color={order.is_sell_order ? 'primary' : 'secondary'}
+                      label={order.is_sell_order ? 'Sell' : 'Buy'}
+                    />
+                  </TableCell>
+                  <TableCell>{order.sell_amount}</TableCell>
+                  <TableCell>{order.buy_amount}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </ListItem>

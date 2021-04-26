@@ -16,7 +16,7 @@ const NodeTooltip = ({ node }) => {
       </div>
 
       <div>
-        <span>Transactions: </span>
+        <span>Orders: </span>
         <span>{node.orders.length}</span>
       </div>
     </div>

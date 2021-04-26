@@ -46,6 +46,7 @@ const NodeList = ({ nodes = [], handleNodeClick }) => {
                 <TableCell>Name</TableCell>
                 <TableCell>Ticker</TableCell>
                 <TableCell>Price</TableCell>
+                <TableCell>Orders</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -61,6 +62,7 @@ const NodeList = ({ nodes = [], handleNodeClick }) => {
                   </TableCell>
                   <TableCell>{node.ticker}</TableCell>
                   <TableCell>{node.price}</TableCell>
+                  <TableCell>{node.orders.length}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
