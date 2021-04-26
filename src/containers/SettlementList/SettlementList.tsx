@@ -15,9 +15,7 @@ import mockApi from 'mockApi';
 
 const useStyles = makeStyles((theme) => {
   return {
-    table: {
-      minWidth: 650,
-    },
+    table: {},
     link: {
       color: theme.palette.primary.main,
       textDecoration: 'none',
@@ -50,7 +48,7 @@ const SettlementList: React.FC = () => {
 
   return (
     <Grid container justify='center'>
-      <Grid item md={8}>
+      <Grid item sm={12} md={10}>
         <Typography variant='h4' component='h4' gutterBottom>
           Latest settlements
         </Typography>

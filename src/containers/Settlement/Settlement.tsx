@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'flex-end',
+      flexWrap: 'wrap',
     },
     titleStrong: {
       marginLeft: theme.spacing(1),
@@ -91,8 +92,8 @@ const Settlement = (props: Props) => {
   }
 
   return (
-    <Grid spacing={2} container>
-      <Grid className={classes.title}>
+    <Grid justify='center' spacing={2} container>
+      <Grid item xs={12} sm={10} md={8} lg={12} className={classes.title}>
         <div>
           <Typography component='span' variant='h6'>
             Settlement
@@ -113,14 +114,14 @@ const Settlement = (props: Props) => {
         </Button>
       </Grid>
 
-      <Grid spacing={2} container>
-        <Grid item md={7}>
+      <Grid spacing={2} justify='center' container>
+        <Grid item xs={12} sm={10} md={8} lg={7}>
           <div className={classes.widget}>
             <NodesGraph handleNodeClick={selectNode} nodes={nodes} id={id} />
           </div>
         </Grid>
 
-        <Grid item md={5}>
+        <Grid item xs={12} sm={10} md={8} lg={5}>
           <div className={classes.widget}>
             <NodeList handleNodeClick={selectNode} nodes={nodes} />
           </div>
