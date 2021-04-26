@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
+import IconLoader from 'components/IconLoader';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -19,6 +20,9 @@ const useStyles = makeStyles((theme) => {
     },
     row: {
       cursor: 'pointer',
+    },
+    icon: {
+      maxWidth: 20,
     },
   };
 });
@@ -43,6 +47,7 @@ const NodeList = ({ nodes = [], handleNodeClick }) => {
           >
             <TableHead>
               <TableRow>
+                <TableCell></TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Ticker</TableCell>
                 <TableCell>Price</TableCell>
@@ -57,6 +62,9 @@ const NodeList = ({ nodes = [], handleNodeClick }) => {
                   hover={true}
                   key={node.ticker}
                 >
+                  <TableCell>
+                    <IconLoader className={classes.icon} name={node.ticker} />
+                  </TableCell>
                   <TableCell component='th' scope='row'>
                     {node.label}
                   </TableCell>
