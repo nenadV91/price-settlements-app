@@ -8,6 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
 import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -62,7 +63,9 @@ const NodeOverview = ({ node }) => {
             component='h2'
             variant='h2'
           >
-            <span>{node.price}</span>
+            <Tooltip placement='left' title='Clearing price'>
+              <span>{node.price}</span>
+            </Tooltip>
           </Typography>
         </ListItem>
 
