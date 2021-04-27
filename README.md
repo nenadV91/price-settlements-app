@@ -29,18 +29,66 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+# Notes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## UI
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- two views, one for list of settlements (SettlementList) and one for single settlement (Settlement)
+- each view will call separate mockApi endpoint for the data
+- each view will be one react container
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### SettlementList
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- gets the data in original format (array of settlement objects)
+- displays table of settlements and each row will have a link to a single settlement view
 
-## Learn More
+#### Settlement
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- gets the data formated by each individual node (array of node objects)
+- uses id from the url and passes it as a parameter to the api endpoint
+- example url `/settlements/vFWqhywsvccmb7oAqmrnxH`
+- on the left it displays nodes graph and a table with all nodes for that settlement
+- on the right it displays single (currently selected) node details
+- to select active node click on the nodes in the graph or on the table row below the graph
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Api/endpoints
+
+- for the demo purposes add delay for to each endpoint
+
+#### getSettlements
+
+- returns data in the original format
+
+#### getSettlement
+
+- takes an id as a parameter and uses that id to select correct settlement
+- first restructure data to the format of nodes (object of nodes) (getNodes method)
+- then add price to each node (addPrices method)
+- then add orders data to each node (addOrders method)
+- lastly return array of objects with Object.values method
+- single node structure will look like
+
+```typescript
+export interface Node {
+  id: string;
+  label: string;
+  ticker: string;
+  price: number;
+  order: {
+    sell: number;
+    buy: number;
+  };
+  exec: {
+    sell: number;
+    buy: number;
+  };
+  orders: Order[];
+}
+```
+
+## Containers
+
+- from the containers we create api calls and get the data
+- data is kept in the state
+- we wrap the function that calls the api in useCallback and also try...catch and then call that function in useEffect hook
+- each container has isLoading state that is true by default and is set to false when api request is finished (either fails or succeed), and if this state is true then we show Loader component
