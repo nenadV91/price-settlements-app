@@ -1,6 +1,8 @@
-import { Token } from '../types';
+import { Token, Node } from 'types';
 
-export default function getNodes(data: Token[]) {
+export default function getNodes(data: {
+  [key: string]: Token;
+}): { [key: string]: Node } {
   return Object.entries(data).reduce((r, [ticker, { label }]) => {
     r[ticker] = {
       id: ticker,

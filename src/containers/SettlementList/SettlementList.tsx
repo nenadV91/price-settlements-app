@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Loader from 'components/Loader';
 import mockApi from 'mockApi';
+import { Settlement } from 'types';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -27,7 +28,7 @@ const SettlementList: React.FC = () => {
   const classes = useStyles();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [rows, setRows] = useState<any>([]);
+  const [rows, setRows] = useState<Settlement[]>([]);
 
   const getSettlements = useCallback(async (): Promise<void> => {
     setIsLoading(true);

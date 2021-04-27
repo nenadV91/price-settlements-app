@@ -1,24 +1,17 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, ReactElement } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import Loader from 'components/Loader';
 import mockApi from 'mockApi';
+import { Node } from 'types';
 
+import Loader from 'components/Loader';
 import NodeList from 'components/NodeList';
 import NodeOverview from 'components/NodeOverview';
 import NodesGraph from 'components/NodesGraph';
-
-type Props = {
-  match?: {
-    params?: {
-      id: string;
-    };
-  };
-};
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -44,16 +37,24 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const Settlement = (props: Props) => {
+type Props = {
+  match?: {
+    params?: {
+      id: string;
+    };
+  };
+};
+
+const Settlement = (props: Props): ReactElement => {
   const classes = useStyles();
 
   const id = props.match?.params?.id;
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [activeNode, setActiveNode] = useState<any>(null);
-  const [nodes, setNodes] = useState<any>(null);
+  const [activeNode, setActiveNode] = useState<Node | null>(null);
+  const [nodes, setNodes] = useState<Node[] | null>(null);
 
-  const selectNode = useCallback((node: any) => {
+  const selectNode = useCallback((node: Node): void => {
     setActiveNode(node);
   }, []);
 
@@ -78,13 +79,7 @@ const Settlement = (props: Props) => {
   }, [getSettlement]);
 
   if (isLoading) {
-    return (
-      <Grid container>
-        <Grid item>
-          <Loader />
-        </Grid>
-      </Grid>
-    );
+    return <Loader />;
   }
 
   if (!isLoading && !nodes) {
@@ -121,13 +116,13 @@ const Settlement = (props: Props) => {
           </div>
 
           <div className={classes.widget}>
-            <NodeList handleNodeClick={selectNode} nodes={nodes} />
+            {nodes && <NodeList handleNodeClick={selectNode} nodes={nodes} />}
           </div>
         </Grid>
 
         <Grid item xs={12} sm={10} md={8} lg={5}>
           <div className={classes.widget}>
-            {activeNode ? <NodeOverview node={activeNode} /> : null}
+            {activeNode && <NodeOverview node={activeNode} />}
           </div>
         </Grid>
       </Grid>

@@ -1,3 +1,4 @@
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
@@ -14,6 +15,7 @@ import Chip from '@material-ui/core/Chip';
 import ReactECharts from 'echarts-for-react';
 import getChartOptions from './getChartOptions';
 import { makeStyles } from '@material-ui/core/styles';
+import { Node } from 'types';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -55,7 +57,11 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const NodeOverview = ({ node }) => {
+type Props = {
+  node: Node;
+};
+
+const NodeOverview = ({ node }: Props): React.ReactElement => {
   const classes = useStyles();
 
   const options = getChartOptions(node);

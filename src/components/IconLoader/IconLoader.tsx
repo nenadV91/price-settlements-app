@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import iconMapper from './iconMapper';
 
-const Icon = ({ name, ...props }) => {
+type Props = {
+  name: string;
+  [x: string]: any;
+};
+
+const Icon = ({ name, ...props }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [imgPath, setImgPath] = useState('');
 

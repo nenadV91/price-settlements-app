@@ -1,6 +1,9 @@
-import { Order } from '../types';
+import { Order, Node } from 'types';
 
-export default function addOrders(nodes: any, orders: Order) {
+export default function addOrders(
+  nodes: { [key: string]: Node },
+  orders: { [key: string]: Order }
+): void {
   Object.entries(orders).forEach(([id, order]) => {
     const {
       sell_token,

@@ -1,19 +1,13 @@
 import data from './data.json';
 import { getNodes, addPrices, addOrders } from './utils';
-
-interface Settlement {
-  id: string;
-  tokens: any;
-  orders: any;
-  prices: any;
-}
+import { Settlement, Node } from 'types';
 
 class MockApi {
   constructor(protected data: Settlement[]) {
     this.data = data;
   }
 
-  delay = (time: number) => {
+  delay = (time: number): Promise<boolean> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(true);
@@ -21,12 +15,12 @@ class MockApi {
     });
   };
 
-  getSettlements = async () => {
+  getSettlements = async (): Promise<Settlement[]> => {
     await this.delay(1000);
     return this.data;
   };
 
-  getSettlement = async (id: string) => {
+  getSettlement = async (id: string): Promise<Node[] | null> => {
     const data = this.data.find((item) => item.id === id);
 
     if (!data) {
@@ -41,7 +35,9 @@ class MockApi {
 
     await this.delay(1000);
 
-    return Object.values(nodes);
+    const result = Object.values(nodes);
+
+    return result;
   };
 }
 
